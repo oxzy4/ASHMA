@@ -45,7 +45,7 @@ section{padding:65px 0}.section-title{font-size:clamp(30px,6vw,43px);font-weight
 // PERSONALIZE THESE SETTINGS before publishing:
 const CONFIG = {
   // Enter the secret date as digits, e.g. "14022026" for 14 Feb 2026.
-  passcode: "2066",
+  passcode: "20660804",
   // Enter birthday as YYYY-MM-DD, e.g. "2026-12-05".
   birthday: "2009-11-20"
 };
@@ -53,7 +53,9 @@ function unlock(){const v=document.getElementById('passcode').value.replace(/\D/
 document.getElementById('passcode').addEventListener('keydown',e=>{if(e.key==='Enter')unlock()});
 function blow(){document.querySelectorAll('.flame').forEach(x=>x.classList.add('off'));document.getElementById('wish').textContent='Wish made! May it come true, Panda. ♡';hearts(28)}
 function relight(){document.querySelectorAll('.flame').forEach(x=>x.classList.remove('off'));document.getElementById('wish').textContent='The candles are glowing again. Make another wish!'}
-function openPhoto(src){document.getElementById('largePhoto').src=src;document.getElementById('photoLightbox').classList.remove('hidden')}\nfunction closePhoto(){document.getElementById('photoLightbox').classList.add('hidden')}\nfunction preview(input){if(!input.files||!input.files[0])return;const box=input.closest('.photo');const img=document.createElement('img');img.src=URL.createObjectURL(input.files[0]);box.innerHTML='';box.appendChild(img)}
+function openPhoto(src){document.getElementById('largePhoto').src=src;document.getElementById('photoLightbox').classList.remove('hidden')}
+function closePhoto(){document.getElementById('photoLightbox').classList.add('hidden')}
+function preview(input){if(!input.files||!input.files[0])return;const box=input.closest('.photo');const img=document.createElement('img');img.src=URL.createObjectURL(input.files[0]);box.innerHTML='';box.appendChild(img)}
 function hearts(n=1){for(let i=0;i<n;i++){const h=document.createElement('div');h.className='float';h.textContent=['♡','♥','✧','💕'][Math.floor(Math.random()*4)];h.style.left=Math.random()*100+'vw';h.style.fontSize=(15+Math.random()*24)+'px';h.style.animationDuration=(4+Math.random()*5)+'s';document.body.appendChild(h);setTimeout(()=>h.remove(),9500)}}
 setInterval(()=>{if(!document.getElementById('site').classList.contains('hidden'))hearts(1)},1700);
 function updateCountdown(){const el=document.getElementById('countdown');if(CONFIG.birthday==='YYYY-MM-DD'){el.innerHTML='Set your date in <code>CONFIG</code><small>UNTIL YOUR NEXT BIRTHDAY</small>';return}const now=new Date(),b=new Date(CONFIG.birthday+'T00:00:00');let next=new Date(now.getFullYear(),b.getMonth(),b.getDate());if(next<now)next.setFullYear(now.getFullYear()+1);const diff=next-now;const days=Math.floor(diff/86400000),hrs=Math.floor(diff%86400000/3600000),mins=Math.floor(diff%3600000/60000);el.innerHTML=`${days} days · ${hrs} hrs · ${mins} mins<small>UNTIL YOUR NEXT BIRTHDAY</small>`}
